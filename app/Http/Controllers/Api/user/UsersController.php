@@ -21,8 +21,10 @@ class UsersController extends ApiResponseController
         $users = User::all();
 
         // return users resource for transform  ---- must collection
-        return UserResource::collection($users);
+//        return UserResource::collection($users);
 
+        // return users posts relation ---- must collection
+        return UserResource::collection($users->load('posts'));
 
         // return user response json
 //        return $this->SuccessResponse($users , 200 , 'true');
@@ -60,9 +62,11 @@ class UsersController extends ApiResponseController
     {
 
         // return user resource for transform
-        return new UserResource($user);
+//        return new UserResource($user);
 
-        
+        // return user posts relation
+        return new UserResource($user->load('posts'));
+
         // return user response json
 //        return $this->SuccessResponse($user , 200 , 'true');
     }
