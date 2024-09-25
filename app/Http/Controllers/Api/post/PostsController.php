@@ -21,7 +21,7 @@ class PostsController extends ApiResponseController
 
 
         // return post response json
-        return $this->SuccessResponse($posts , 200 , 'true');
+//        return $this->SuccessResponse($posts , 200 , 'true');
     }
 
     public function store(Request $request)

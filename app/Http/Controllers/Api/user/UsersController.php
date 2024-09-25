@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\user;
 
 use App\Http\Controllers\ApiResponseController;
+use App\Http\Resources\PostResource;
+use App\Http\Resources\UserResource;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,8 +17,16 @@ class UsersController extends ApiResponseController
      */
     public function index()
     {
+
         $users = User::all();
-        return $this->SuccessResponse($users , 200 , 'true');
+
+        // return users resource for transform  ---- must collection
+        return UserResource::collection($users);
+
+
+        // return user response json
+//        return $this->SuccessResponse($users , 200 , 'true');
+
     }
 
     /**
@@ -47,7 +58,13 @@ class UsersController extends ApiResponseController
      */
     public function show(User $user)
     {
-        return $this->SuccessResponse($user , 200 , 'true');
+
+        // return user resource for transform
+        return new UserResource($user);
+
+        
+        // return user response json
+//        return $this->SuccessResponse($user , 200 , 'true');
     }
 
     /**
