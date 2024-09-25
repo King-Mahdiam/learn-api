@@ -68,7 +68,14 @@ class PostsController extends ApiResponseController
     public function show(Post $post)
     {
         // return post resource for transform
-        return new PostResource($post);
+//        return new PostResource($post);
+
+        // return post resource add with
+        return (new PostResource($post))->additional([
+            'user' => [
+                'id' => $post->user->id
+            ]
+        ]);
 
 
         // return post response json
