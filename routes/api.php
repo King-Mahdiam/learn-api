@@ -19,10 +19,16 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
+
+// The first and obsolete method
+
 Route::get('/posts' , [PostsController::class , 'index']);
 Route::post('/posts' , [PostsController::class , 'store']);
 Route::get('/posts/{post}' , [PostsController::class , 'show']);
 Route::patch('/posts/{post}' , [PostsController::class , 'update']);
 Route::delete('/posts/{post}' , [PostsController::class , 'destroy']);
+
+
+// The second and new method
 
 Route::resource('/users' , UsersController::class);

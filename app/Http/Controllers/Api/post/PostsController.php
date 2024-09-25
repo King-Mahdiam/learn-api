@@ -15,6 +15,12 @@ class PostsController extends ApiResponseController
     public function index()
     {
         $posts = Post::all();
+
+        // return posts resource for transform  ---- must collection
+        return PostResource::collection($posts);
+
+
+        // return post response json
         return $this->SuccessResponse($posts , 200 , 'true');
     }
 
@@ -63,6 +69,7 @@ class PostsController extends ApiResponseController
     {
         // return post resource for transform
         return new PostResource($post);
+
 
         // return post response json
 //        return $this->SuccessResponse($post , 200 , 'true');
