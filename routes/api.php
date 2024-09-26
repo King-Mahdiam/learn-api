@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\auth\AuthController;
 use App\Http\Controllers\Api\post\PostsController;
 use App\Http\Controllers\Api\user\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 
 // The first and obsolete method
-
 Route::get('/posts' , [PostsController::class , 'index']);
 Route::post('/posts' , [PostsController::class , 'store']);
 Route::get('/posts/{post}' , [PostsController::class , 'show']);
@@ -30,5 +30,7 @@ Route::delete('/posts/{post}' , [PostsController::class , 'destroy']);
 
 
 // The second and new method
-
 Route::resource('/users' , UsersController::class);
+
+// route register with laravel passport
+Route::post('/register' , [AuthController::class , 'register']);
