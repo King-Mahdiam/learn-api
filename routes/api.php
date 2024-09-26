@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // The first and obsolete method
-Route::get('/posts' , [PostsController::class , 'index']);
+Route::get('/posts' , [PostsController::class , 'index'])->middleware('auth:api');
 Route::post('/posts' , [PostsController::class , 'store']);
 Route::get('/posts/{post}' , [PostsController::class , 'show']);
 Route::patch('/posts/{post}' , [PostsController::class , 'update']);
