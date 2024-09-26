@@ -37,4 +37,30 @@ class AuthController extends ApiResponseController
             'token' => $token
         ] , 201);
     }
+
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'email', 'exists:users,email'],
+            'password' => ['required', 'min:3']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->ErrorResponse(422 , $validator->messages());
+        }
+
+        $user = User::where('email' , $request->email)->first();
+
+        if (!$user or !Hash::check($request->password , $user->password)) {
+            return $this->ErrorResponse(402 , 'user not found');
+        }
+
+        // create token OAtuh for user
+        $token = $user->createToken('laravel')->accessToken;
+
+        return $this->SuccessResponse([
+            'user' => $user ,
+            'token' => $token
+        ] , 201);
+    }
 }

@@ -32,5 +32,6 @@ Route::delete('/posts/{post}' , [PostsController::class , 'destroy']);
 // The second and new method
 Route::resource('/users' , UsersController::class);
 
-// route register with laravel passport
+// route register and login with laravel passport
 Route::post('/register' , [AuthController::class , 'register']);
+Route::post('/login' , [AuthController::class , 'login']);
